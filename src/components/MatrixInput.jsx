@@ -55,22 +55,42 @@ const MatrixInput = ({ matrix, setMatrix }) => {
         </table>
       </div>
       
-      <div className="mt-4 flex gap-2">
-        <button 
-          onClick={addAlternative}
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
-        >
-          + Ajouter une Alternative
+      {/* Actions */}
+      <div style={styles.actions}>
+        <button style={styles.button} onClick={addAlternative}>
+          + Ajouter une alternative
         </button>
-        <button 
-          onClick={addCriterion}
-          className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition"
-        >
-          + Ajouter un Critère
+
+        <button style={styles.button} onClick={addCriterion}>
+          + Ajouter un critère
         </button>
       </div>
     </div>
   );
+};
+
+
+
+
+const styles = {
+  
+
+  actions: {
+    marginTop: "14px",
+    display: "flex",
+    gap: "10px",
+  },
+
+  button: {
+    backgroundColor: "#1e3a5f",
+    border: "1px solid rgba(255,255,255,0.1)",
+    color: "white",
+    padding: "8px 14px",
+    borderRadius: "8px",
+    fontSize: "12px",
+    fontWeight: "600",
+    cursor: "pointer",
+  },
 };
 
 export default MatrixInput;

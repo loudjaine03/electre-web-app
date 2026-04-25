@@ -1,29 +1,26 @@
 import { useNavigate } from "react-router-dom";
- 
+
 export default function HomePage() {
   const navigate = useNavigate();
- 
+
   const steps = [
     {
       number: "01",
-      icon: "📋",
-      title: "Saisir vos données",
-      description: "Entrez la matrice de performances de vos alternatives selon chaque critère, avec leurs noms.",
+      title: "Saisie des données",
+      description: "Entrez la matrice de performances de vos alternatives selon chaque critère.",
     },
     {
       number: "02",
-      icon: "⚖️",
-      title: "Paramétrer les critères",
-      description: "Attribuez un poids à chaque critère, choisissez s'il faut le maximiser ou le minimiser, et fixez les seuils.",
+      title: "Paramètres des critères",
+      description: "Entrez les seuils, les poids et les objectifs des critères.",
     },
     {
       number: "03",
-      icon: "🏆",
       title: "Obtenir la recommandation",
-      description: "L'algorithme ELECTRE I calcule automatiquement le noyau — la ou les meilleures alternatives.",
+      description: "L'algorithme ELECTRE I calcule automatiquement le noyau.",
     },
   ];
- 
+
   return (
     <div style={{
       minHeight: "100vh",
@@ -32,7 +29,7 @@ export default function HomePage() {
       display: "flex",
       flexDirection: "column",
     }}>
- 
+
       {/* ── Navbar ── */}
       <nav style={{
         padding: "18px 48px",
@@ -42,13 +39,10 @@ export default function HomePage() {
         borderBottom: "1px solid rgba(255,255,255,0.08)",
       }}>
         <div style={{ color: "white", fontWeight: "900", fontSize: "20px", letterSpacing: "0.5px" }}>
-          ⚖️ ELECTRE I
-        </div>
-        <div style={{ fontSize: "13px", color: "rgba(255,255,255,0.4)", fontWeight: "500" }}>
-          Master 1 RSID — Groupe 3
+          ELECTRE I
         </div>
       </nav>
- 
+
       {/* ── Hero ── */}
       <div style={{
         flex: 1,
@@ -59,22 +53,7 @@ export default function HomePage() {
         padding: "60px 24px 40px",
         textAlign: "center",
       }}>
-        <div style={{
-          display: "inline-block",
-          backgroundColor: "rgba(37,99,235,0.15)",
-          border: "1px solid rgba(37,99,235,0.3)",
-          borderRadius: "100px",
-          padding: "8px 20px",
-          color: "#93c5fd",
-          fontSize: "12px",
-          fontWeight: "700",
-          letterSpacing: "2px",
-          textTransform: "uppercase",
-          marginBottom: "28px",
-        }}>
-          Aide Multicritère à la Décision
-        </div>
- 
+
         <h1 style={{
           fontSize: "clamp(36px, 6vw, 64px)",
           fontWeight: "900",
@@ -93,7 +72,7 @@ export default function HomePage() {
             décisions
           </span>
         </h1>
- 
+
         <p style={{
           fontSize: "17px",
           color: "rgba(255,255,255,0.55)",
@@ -101,10 +80,9 @@ export default function HomePage() {
           lineHeight: "1.7",
           margin: "0 0 44px 0",
         }}>
-          Analysez vos alternatives selon plusieurs critères grâce à la méthode
-          ELECTRE I et obtenez une recommandation claire et justifiée.
+          Choisir les mailleurs alternatives multicritéres en utilisant l'Algorithme d'ELECTRE I <br/> <br/>
         </p>
- 
+
         <button
           onClick={() => navigate("/input")}
           style={{
@@ -131,8 +109,8 @@ export default function HomePage() {
           }}
         >
           Commencer l'Analyse →
-        </button>
- 
+        </button> <br/><br/><br/>
+
         {/* ── Steps ── */}
         <div style={{
           display: "grid",
@@ -143,29 +121,41 @@ export default function HomePage() {
           marginTop: "72px",
         }}>
           {steps.map((step, idx) => (
-            <div key={idx} style={{
-              backgroundColor: "rgba(255,255,255,0.05)",
-              border: "1px solid rgba(255,255,255,0.1)",
-              borderRadius: "16px",
-              padding: "28px 24px",
-              textAlign: "left",
-              transition: "background 0.2s",
-            }}
+            <div
+              key={idx}
+              style={{
+                backgroundColor: "rgba(255,255,255,0.05)",
+                border: "1px solid rgba(255,255,255,0.1)",
+                borderRadius: "16px",
+                padding: "28px 24px",
+                textAlign: "left",
+                transition: "background 0.2s",
+              }}
               onMouseEnter={e => e.currentTarget.style.backgroundColor = "rgba(255,255,255,0.09)"}
               onMouseLeave={e => e.currentTarget.style.backgroundColor = "rgba(255,255,255,0.05)"}
             >
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "16px" }}>
-                <span style={{ fontSize: "28px" }}>{step.icon}</span>
+              {/* ── Step number badge ── */}
+              <div style={{
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                width: "36px",
+                height: "36px",
+                borderRadius: "10px",
+                backgroundColor: "rgba(37,99,235,0.25)",
+                border: "1px solid rgba(37,99,235,0.4)",
+                marginBottom: "18px",
+              }}>
                 <span style={{
                   fontFamily: "'IBM Plex Mono', monospace",
-                  fontSize: "12px",
+                  fontSize: "13px",
                   fontWeight: "700",
-                  color: "rgba(255,255,255,0.2)",
-                  letterSpacing: "1px",
+                  color: "#93c5fd",
                 }}>
                   {step.number}
                 </span>
               </div>
+
               <div style={{ fontSize: "16px", fontWeight: "800", color: "white", marginBottom: "10px" }}>
                 {step.title}
               </div>
@@ -175,22 +165,44 @@ export default function HomePage() {
             </div>
           ))}
         </div>
- 
+
         {/* ── Footer info ── */}
         <div style={{
           marginTop: "56px",
-          padding: "16px 28px",
+          padding: "24px 36px",
           backgroundColor: "rgba(255,255,255,0.04)",
           border: "1px solid rgba(255,255,255,0.07)",
           borderRadius: "12px",
           fontSize: "12px",
           color: "rgba(255,255,255,0.35)",
-          letterSpacing: "0.5px",
+          letterSpacing: "0.4px",
+          lineHeight: "1",
+          textAlign: "center",
         }}>
-          Faculté des Mathématiques et de l'Informatique — Fondements de la Décision — 2025/2026
+          <div style={{ color: "rgba(255,255,255,0.55)", fontWeight: "700", fontSize: "13px", marginBottom: "6px" }}>
+            Université des Sciences et de la Technologie d'Oran
+          </div>
+          <div style={{ marginBottom: "4px" }}>Faculté des Mathématiques et de l'Informatique</div>
+          <div style={{ marginBottom: "16px" }}>Département d'Informatique</div>
+
+          <br/><br/>
+
+          <div style={{ marginBottom: "4px" }}>Fondements de la Décision    Master 1 RSID</div>
+          <div style={{ marginBottom: "16px" }}>Groupe 3</div>
+
+          <br/><br/>
+          <div style={{ marginBottom: "2px" }}>Réalisé par: <br/><br/></div>
+          <div style={{ color: "rgba(255,255,255,0.55)", fontWeight: "600", marginBottom: "2px" }}>
+            BENSALEM Loudjaine-hibatessetar <br/><br/>
+          </div>
+          
+          <div style={{ color: "rgba(255,255,255,0.55)", fontWeight: "600" }}>
+            TAIBI Nermine <br/> <br/>
+          </div>
+          <div>2025/2026</div>
         </div>
+
       </div>
     </div>
   );
 }
- 

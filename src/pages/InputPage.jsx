@@ -126,7 +126,7 @@ export default function InputPage() {
     <div style={pageStyle}>
       {/* Navbar */}
       <div style={headerStyle}>
-        <div style={{ color: "white", fontWeight: "900", fontSize: "18px" }}>⚖️ ELECTRE I</div>
+        <div style={{ color: "white", fontWeight: "900", fontSize: "18px" }}>ELECTRE I</div>
 
         <button
           onClick={loadExample}
@@ -141,7 +141,7 @@ export default function InputPage() {
             fontWeight: "700",
           }}
         >
-          ⚡ Charger l'exemple
+           Charger l'exemple
         </button>
       </div>
 

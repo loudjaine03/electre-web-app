@@ -27,9 +27,7 @@ export default function SummaryCard({ kernel, p, q, alternatives }) {
         padding: "28px 36px",
         color: "white",
       }}>
-        <div style={{ fontSize: "12px", fontWeight: "700", letterSpacing: "3px", opacity: 0.7, marginBottom: "8px", textTransform: "uppercase" }}>
-          Résultat de l'Analyse ELECTRE I
-        </div>
+      
         <div style={{ fontSize: "26px", fontWeight: "800", letterSpacing: "-0.5px" }}>
           {isEmpty
             ? "Aucune alternative dominante trouvée"
@@ -78,38 +76,13 @@ export default function SummaryCard({ kernel, p, q, alternatives }) {
                 alignItems: "center",
                 gap: "10px",
               }}>
-                <span style={{ fontSize: "22px" }}>🏆</span>
                 {alt}
               </div>
             ))}
           </div>
         )}
 
-        {/* Explanation */}
-        {!isEmpty && (
-          <div style={{
-            backgroundColor: "#f0f9ff",
-            border: "1px solid #bae6fd",
-            borderRadius: "10px",
-            padding: "16px 20px",
-            marginBottom: "20px",
-            fontSize: "14px",
-            color: "#0369a1",
-            lineHeight: "1.7",
-          }}>
-            {isSingle ? (
-              <span>
-                <b>{kernel[0]}</b> est la seule alternative qui n'est surclassée par aucune autre.
-                C'est la recommandation unique du modèle ELECTRE I.
-              </span>
-            ) : (
-              <span>
-                Les alternatives <b>{kernel.join(", ")}</b> forment le noyau — elles ne sont surclassées
-                par aucune autre alternative et représentent les meilleures options selon les critères définis.
-              </span>
-            )}
-          </div>
-        )}
+      
 
         {/* Parameters used */}
         <div style={{
@@ -120,7 +93,7 @@ export default function SummaryCard({ kernel, p, q, alternatives }) {
           borderTop: "1px solid #f1f5f9",
         }}>
           <div style={paramBadge("#f1f5f9", "#334155")}>
-            📊 {alternatives?.length} alternatives analysées
+             {alternatives?.length} alternatives analysées
           </div>
           <div style={paramBadge("#f1f5f9", "#334155")}>
             Seuil concordance p = <b style={{ marginLeft: "4px" }}>{p}</b>

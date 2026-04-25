@@ -83,7 +83,7 @@ export default function ResultsPage() {
       {/* Header */}
       <div style={headerStyle}>
         <div style={{ color: "white", fontWeight: "800", fontSize: "18px", letterSpacing: "0.5px" }}>
-          ⚖️ ELECTRE I
+          ELECTRE I
         </div>
 
         <button
@@ -109,19 +109,7 @@ export default function ResultsPage() {
 
       {/* Content */}
       <div style={containerStyle}>
-        <div
-          style={{
-            marginBottom: "10px",
-            fontSize: "13px",
-            color: "#94a3b8",
-            fontWeight: "600",
-            letterSpacing: "2px",
-            textTransform: "uppercase",
-          }}
-        >
-          Analyse complète
-        </div>
-
+ 
         <h1
           style={{
             fontSize: "clamp(24px, 4vw, 30px)",
@@ -131,7 +119,9 @@ export default function ResultsPage() {
             letterSpacing: "-0.5px",
           }}
         >
-          Résultats de la Décision
+          <br />
+          Résultats de la Décision avec ELECTRE I
+          <br/>
         </h1>
 
         {/* 1. Summary Card */}
@@ -139,25 +129,9 @@ export default function ResultsPage() {
           <SummaryCard kernel={kernel} p={p} q={q} alternatives={alternatives} />
         </div>
 
-        {/* 2. Graphe de surclassement */}
+        {/* 2. Matrices */}
         <div style={{ marginBottom: "24px" }}>
-          <SectionTitle number="2" title="Graphe de Surclassement" />
-          <div style={cardStyle}>
-            <div style={{ overflowX: "auto" }}>
-              <div style={{ minWidth: "fit-content" }}>
-                <OutrankingGraph
-                  outranking={outranking}
-                  alternatives={alternatives}
-                  kernel={kernel}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* 3. Matrices */}
-        <div style={{ marginBottom: "24px" }}>
-          <SectionTitle number="3" title="Matrices de Calcul" />
+          <SectionTitle number="2" title="Matrices de Calcul" />
           <div style={cardStyle}>
             <div style={{ overflowX: "auto", width: "100%" }}>
               <div style={{ minWidth: "max-content" }}>
@@ -174,6 +148,24 @@ export default function ResultsPage() {
           </div>
         </div>
 
+        
+        {/* 3. Graphe de surclassement */}
+        <div style={{ marginBottom: "24px" }}>
+          <SectionTitle number="3" title="Graphe de Surclassement" />
+          <div style={cardStyle}>
+            <div style={{ overflowX: "auto" }}>
+              <div style={{ minWidth: "fit-content" }}>
+                <OutrankingGraph
+                  outranking={outranking}
+                  alternatives={alternatives}
+                  kernel={kernel}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+
         {/* 4. Buttons */}
         <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
           <button
@@ -186,7 +178,7 @@ export default function ResultsPage() {
               boxShadow: "0 4px 14px rgba(37,99,235,0.3)",
             }}
           >
-            🔄 Nouvelle Analyse
+            Nouvelle Analyse
           </button>
 
           <button
