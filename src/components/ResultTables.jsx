@@ -150,7 +150,7 @@ export default function ResultTables({ concordance, discordance, outranking, alt
                     );
                   }
                   if (activeTab === "outranking") {
-                    const val = outranking[i][j];
+                    const val = i === j ? 1 : outranking[i][j];
                     return (
                       <td key={altCol} style={cellStyle(getOutrankingColor(val))}>
                         {val}

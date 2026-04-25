@@ -16,8 +16,8 @@ const EXAMPLE = {
   ],
   weights: [0.12, 0.1, 0.22, 0.14, 0.12, 0.2, 0.1],
   types: ["max", "max", "max", "max", "max", "max", "max"],
-  p: 0.6,
-  q: 0.4,
+  p: 0.8,
+  q: 0.25,
 };
 
 export default function InputPage() {
