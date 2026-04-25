@@ -269,7 +269,7 @@ export default function InputPage() {
               cursor: "pointer",
             }}
           >
-            {step === 3 ? "🧮 Calculer" : "Suivant →"}
+            {step === 3 ? " Calculer" : "Suivant →"}
           </button>
         </div>
       </div>
