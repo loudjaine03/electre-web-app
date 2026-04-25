@@ -1,5 +1,6 @@
 import { useState } from "react";
- 
+
+
 // ─── ResultTables ───────────────────────────────────────────────
 // Props:
 //   concordance  → matrice n×n de nombres
@@ -9,34 +10,36 @@ import { useState } from "react";
 //   p            → seuil concordance (ex: 0.6)
 //   q            → seuil discordance (ex: 0.4)
 // ────────────────────────────────────────────────────────────────
- 
+
 export default function ResultTables({ concordance, discordance, outranking, alternatives, p, q }) {
   const [activeTab, setActiveTab] = useState("concordance");
- 
+
   const tabs = [
     { id: "concordance", label: "Concordance" },
     { id: "discordance", label: "Discordance" },
     { id: "outranking",  label: "Surclassement" },
   ];
- 
-  const getConcordanceColor = (val, i, j) => {
-    if (i === j) return "#f0f0f0";
-    if (val >= p) return "#d1fae5"; // vert clair = bon
-    return "#fee2e2"; // rouge clair = mauvais
+
+  const fmt = (val) => {
+    const fixed = val.toFixed(3);
+    return fixed.endsWith('.000') ? String(Math.round(val)) : fixed;
   };
- 
-  const getDiscordanceColor = (val, i, j) => {
-    if (i === j) return "#f0f0f0";
+
+  const getConcordanceColor = (val) => {
+    if (val >= p) return "#d1fae5";
+    return "#fee2e2";
+  };
+
+  const getDiscordanceColor = (val) => {
     if (val <= q) return "#d1fae5";
     return "#fee2e2";
   };
- 
-  const getOutrankingColor = (val, i, j) => {
-    if (i === j) return "#f0f0f0";
+
+  const getOutrankingColor = (val) => {
     if (val === 1) return "#d1fae5";
     return "#fff7ed";
   };
- 
+
   const cellStyle = (bg) => ({
     backgroundColor: bg,
     border: "1px solid #e5e7eb",
@@ -46,7 +49,7 @@ export default function ResultTables({ concordance, discordance, outranking, alt
     fontFamily: "'IBM Plex Mono', monospace",
     minWidth: "70px",
   });
- 
+
   const headerStyle = {
     backgroundColor: "#1e3a5f",
     color: "white",
@@ -58,15 +61,15 @@ export default function ResultTables({ concordance, discordance, outranking, alt
     minWidth: "70px",
     border: "1px solid #1e3a5f",
   };
- 
+
   const cornerStyle = {
     ...headerStyle,
     backgroundColor: "#0f2035",
   };
- 
+
   return (
     <div style={{ fontFamily: "'IBM Plex Sans', sans-serif" }}>
- 
+
       {/* ── Tabs ── */}
       <div style={{ display: "flex", gap: "8px", marginBottom: "20px" }}>
         {tabs.map((tab) => (
@@ -91,7 +94,7 @@ export default function ResultTables({ concordance, discordance, outranking, alt
           </button>
         ))}
       </div>
- 
+
       {/* ── Description ── */}
       <div style={{
         backgroundColor: "#f8fafc",
@@ -110,10 +113,10 @@ export default function ResultTables({ concordance, discordance, outranking, alt
           <span>Chaque cellule D(i,j) mesure l'intensité du désaccord. Les cellules <span style={{ backgroundColor: "#d1fae5", padding: "1px 6px", borderRadius: "4px" }}>vertes</span> indiquent D(i,j) ≤ q = <b>{q}</b> (favorable au surclassement).</span>
         )}
         {activeTab === "outranking" && (
-          <span>✅ signifie que l'alternative <b>i surclasse j</b> (C ≥ {p} ET D ≤ {q}). ❌ signifie absence de surclassement.</span>
+          <span>1 signifie que l'alternative <b>i surclasse j</b> (C ≥ {p} ET D ≤ {q}). 0 signifie absence de surclassement.</span>
         )}
       </div>
- 
+
       {/* ── Table ── */}
       <div style={{ overflowX: "auto", borderRadius: "12px", boxShadow: "0 2px 12px rgba(0,0,0,0.08)" }}>
         <table style={{ borderCollapse: "collapse", width: "100%" }}>
@@ -133,24 +136,24 @@ export default function ResultTables({ concordance, discordance, outranking, alt
                   if (activeTab === "concordance") {
                     const val = concordance[i][j];
                     return (
-                      <td key={altCol} style={cellStyle(getConcordanceColor(val, i, j))}>
-                        {i === j ? "—" : val.toFixed(2)}
+                      <td key={altCol} style={cellStyle(getConcordanceColor(val))}>
+                        {fmt(val)}
                       </td>
                     );
                   }
                   if (activeTab === "discordance") {
                     const val = discordance[i][j];
                     return (
-                      <td key={altCol} style={cellStyle(getDiscordanceColor(val, i, j))}>
-                        {i === j ? "—" : val.toFixed(2)}
+                      <td key={altCol} style={cellStyle(getDiscordanceColor(val))}>
+                        {fmt(val)}
                       </td>
                     );
                   }
                   if (activeTab === "outranking") {
                     const val = outranking[i][j];
                     return (
-                      <td key={altCol} style={cellStyle(getOutrankingColor(val, i, j))}>
-                        {i === j ? "—" : val === 1 ? "✅" : "❌"}
+                      <td key={altCol} style={cellStyle(getOutrankingColor(val))}>
+                        {val}
                       </td>
                     );
                   }
@@ -160,20 +163,16 @@ export default function ResultTables({ concordance, discordance, outranking, alt
           </tbody>
         </table>
       </div>
- 
+
       {/* ── Legend ── */}
       <div style={{ display: "flex", gap: "20px", marginTop: "16px", flexWrap: "wrap" }}>
         <div style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "13px", color: "#64748b" }}>
           <div style={{ width: "16px", height: "16px", backgroundColor: "#d1fae5", borderRadius: "4px", border: "1px solid #6ee7b7" }} />
-          {activeTab === "outranking" ? "Surclassement ✅" : "Favorable"}
+          {activeTab === "outranking" ? "Surclassement (1)" : "Favorable"}
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "13px", color: "#64748b" }}>
           <div style={{ width: "16px", height: "16px", backgroundColor: activeTab === "outranking" ? "#fff7ed" : "#fee2e2", borderRadius: "4px", border: "1px solid #fca5a5" }} />
-          {activeTab === "outranking" ? "Pas de surclassement ❌" : "Défavorable"}
-        </div>
-        <div style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "13px", color: "#64748b" }}>
-          <div style={{ width: "16px", height: "16px", backgroundColor: "#f0f0f0", borderRadius: "4px", border: "1px solid #d1d5db" }} />
-          Diagonale (i = j)
+          {activeTab === "outranking" ? "Pas de surclassement (0)" : "Défavorable"}
         </div>
       </div>
     </div>
