@@ -86,7 +86,7 @@ const WeightsInput = ({ weights, setWeights, types, setTypes }) => {
         borderRadius: '8px', border: '1px border #bfdbfe', color: '#1e40af', fontSize: '13px' 
       }}>
          <strong>Note :</strong> La somme actuelle est de <strong>{totalSum}</strong>. 
-        Le système normalise automatiquement chaque critère par cette somme, comme dans la formule $W_j = w_j / \sum w_j$ du cours[cite: 170].
+        
       </div>
     </div>
   );
