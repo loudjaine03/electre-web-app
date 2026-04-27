@@ -1,16 +1,42 @@
-# React + Vite
+#  ELECTRE I Decision Support System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
+This project implements the **ELECTRE I method**, a multicriteria decision-making (MCDM) approach used to select the best alternatives based on multiple criteria.
 
-Currently, two official plugins are available:
+It provides a **web interface** where users can input data and obtain decision results using the ELECTRE I algorithm.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-## React Compiler
+##  Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+###  Input:
+- Alternatives  
+- Criteria  
+- Objectives (maximize / minimize)  
+- Weights  
+- Thresholds (seuils)
 
-## Expanding the ESLint configuration
+###  Processing:
+The system computes:
+- Concordance matrix  
+- Discordance matrix  
+- Surclassement (outranking) matrix  
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+###  Output:
+The system determines:
+- Outranking relations  
+- Kernel (set of best alternatives)
+
+##  Technologies Used
+ React.js , js, Vite
+
+ 
+
+ <p align="center">
+  <img src="https://github.com/user-attachments/assets/3b25a179-f177-4f6d-824f-98939066d3b5" width="45%" />
+  <img src="https://github.com/user-attachments/assets/ef374af9-d342-4988-a63b-e32ec814a102" width="45%" />
+</p>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/5a518636-c659-4508-96f9-7cd2770c548e" width="45%" />
+  <img src="https://github.com/user-attachments/assets/dfde2ed6-d1f6-43e7-b178-0941bea9c5f7" width="45%" />
+</p>
